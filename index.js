@@ -70,6 +70,7 @@ function restricted(req, res, next) {
         .first()
         .then(user => {
             if (user && bcrypt.compareSync(password, user.password)) {
+                next();
             }else{
                 res.status(401).json({message: 'Not Authorized!'});
             }
